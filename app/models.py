@@ -8,15 +8,20 @@ from datetime import datetime
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class Blog:
-    '''
-    Blog class to define blog objects
-    '''
+class Blog(db.Model):
+    __tablename__ = 'blogs'
 
-    def __init__(self, title):
-        self.id=id
-        self.title=title
+    id = db.Column(db.Integer, primary_key=True)
+    blog_post = db.Column(db.String(255))
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
     
+
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
 
@@ -27,6 +32,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
+    blog = db.relationship('Blog', backref='user', lazy='dynamic')
     comments = db.relationship('Comment',backref = 'user',lazy = "dynamic")
 
     @property
@@ -61,8 +67,9 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer,primary_key = True)
-    comment= db.Column(db.String)
+    comment= db.Column(db.String(255))
     blog_id = db.Column(db.Integer,db.ForeignKey('blog.id'))
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     username =  db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
 
