@@ -1,23 +1,29 @@
 # 1 MINUTE PITCH
-This is an application that allows users to use one minute wisely by saying something meaningful. This is achieved by creating a pitch. The users will submit their one minute pitches and other users will vote on them and leave comments to give their feedback on them.
+This is an application that allows users to create a personal blogging website where one can create and share opinions and other users can read and comment on them.
 
 #### By Nancy Muthinzi
 
 ## SPECIFICATIONS
-With this application, a user can:
-- See pitches other people have posted.
-- Vote on the pitch they liked and give it an upvote or a downvote.
-- Sign up in the application.
-- Receive a welcoming email when they sign up.
-- View pitches created on their profile page.
-- Be able to leave a comment on different pitches and leave feedback.
-- View different pitches categories.
+#### User Specs
+A user should be able to:
+- View  blog posts submitted
+- Comment on blog posts
+- View the most recent posts
+- Be alerted when a new post is made by joining a subscription.
 
+#### Writer Specs
+A writer should be able to:
+- Sign in to the blog
+- Create a blog from the application
+- Delete comments that I find insulting or degrading
+- Update or delete blogs I have created
 
 ## SETUP/INSTALLATION REQUIREMENTS
-To be able to view or use the application, here's the github https://nancy-muthinzi.github.io/ip5-pitches/.
+To be able to view or use the application, here's the github link: https://nancy-muthinzi.github.io/ip6-Blog/
 
 You need to clone the repository and install all the dependencies required before being able to launch the app on your computer.
+
+Here's a link to my app: https://nanciekathini-blog.herokuapp.com/
 
 ## KNOWN BUGS
 This is still a work in progress and will continue to be worked on. But for any issues encountered and any contributions to the code or design, kindly reach out to me on my email address: nanciekathini@gmail.com.
