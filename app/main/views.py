@@ -1,7 +1,7 @@
 from flask import render_template,redirect,url_for,abort
 from . import main
-from . forms import CommentForm,UpdateProfile
-from ..models import Comment, User
+from . forms import CommentForm,UpdateProfile,BlogForm
+from ..models import Comment, User, Blog, Role
 from flask_login import login_required, current_user
 from .. import db,photos
 import markdown2  
@@ -17,12 +17,16 @@ def index():
 
     return render_template('index.html', title = title)
 
-@main.route('/blog/<int:id>')
-def blog():
-    '''
-    function that returns the blog details page and its data
-    '''
-    return render_template('blog.html')    
+@main.route('/blog/new', methods=['GET','POST'])
+@login_required
+def new_blog():
+    form = BlogForm
+    if form.validate_on_submit():
+        Blog=form.content.data
+        new_blog=Blog(Blog=blog, category=form.category.data)
+        new_blog.save_blog()
+        return redirect(url_for('main.view_blog'))
+    return render_template('blog.html',form=form)    
 
 @main.route('/blog/comment/new/<int:id>', methods = ['GET','POST'])
 @login_required
@@ -30,21 +34,16 @@ def new_comment(id):
 
     form = CommentForm()
 
-    blog = get_blog(id)
-
     if form.validate_on_submit():
-        title = form.title.data
-        comment = form.comment.data
-
+       
         #updated comment instance
-        new_comment = comment(blog.id,blog_comment=comment, user=current_user)
+        new_comment = Comment(Blog.id,blog_comment=Comment, user=current_user)
 
         #save comment method
         new_comment.save_comment()
-        return redirect(url_for('.blog',id = blog.id ))
+        return redirect(url_for('.blog',form=form ))
 
-    title = f'{blog.title} comment'
-    return render_template('new_comment.html',title = title, comment_form=form, blog=blog)
+    return render_template('new_comment.html',comment_form=form, blog=blog)
 
 @main.route('/comment/<int:id>')
 def single_comment(id):

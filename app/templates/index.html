@@ -10,7 +10,16 @@
 {% endblock %}
 
 {% block content %}
-<h1>New Entry</h1>
+<div class="container-fluid">
+    {% for blog in blog %}
+    <p>{{blog.blog}}</p>
+    <p>{{blog.date}}</p>
+
+    <a href="/blog/new/comment/{{blog.id}}/view"><button class="btn btn-outline-warning btn-sm" style="color:white;" >View Comments</a></button>
+    <hr>
+    <a href="/blog/new/comment/{{blog.id}}"> <button class="btn btn-outline-warning btn-sm"  style="color:white;">Add New Comment</a></button>
+   {% endfor %}
+</div>
 
 {% endblock %}
 

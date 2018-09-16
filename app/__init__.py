@@ -43,6 +43,6 @@ def create_app(config_name):
     # configure_request(app)
 
     # configure UploadSet
-    # configure_uploads(app,photos)
+    configure_uploads(app,photos)
 
     return app
