@@ -31,7 +31,7 @@ class User(UserMixin,db.Model):
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    password_hash = db.Column(db.String(255))
+    pass_secure = db.Column(db.String(255))
     blog = db.relationship('Blog', backref='user', lazy='dynamic')
     comments = db.relationship('Comment',backref = 'user',lazy = "dynamic")
 
@@ -41,8 +41,7 @@ class User(UserMixin,db.Model):
 
     @password.setter
     def password(self, password):
-        self.password_hash = generate_password_hash(password)
-
+        self.pass_secure = generate_password_hash(password)
 
     def verify_password(self,password):
         return check_password_hash(self.password_hash,password)

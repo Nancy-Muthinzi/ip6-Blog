@@ -58,7 +58,9 @@ def new_comment(id):
     return render_template('new_comment.html',comment_form=form, blog=blog)
 
 @main.route('/comment/<int:id>')
-def single_comment(id):
+@login_required
+
+def comment(id):
     comment=Comment.query.get(id)
     if comment is None:
         abort(404)
