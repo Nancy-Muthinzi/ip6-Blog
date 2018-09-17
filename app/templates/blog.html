@@ -10,11 +10,11 @@
         {{wtf.quick_form(form)}}
         {{simplemde.load}}
 
-        {% for blog in blog %}
+        {% for blog in blogs %}
         <ul>
-            <p>{{blog.title}}</p>
-            <p>{{blog.content}}</p>
-            <p>{{blog.date}}</p>
+            <p>{{blog.blog_title}}</p>
+            <p>{{blog.blog_content}}</p>
+            <p>{{blog.posted}}</p>
         </ul>
         {% endfor %}
    </div>

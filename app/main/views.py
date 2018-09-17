@@ -33,12 +33,13 @@ def index():
 @login_required
 def new_blog():
     form = BlogForm()
+    blogs = Blog.query.all()
+
     if form.validate_on_submit():
-        Blog=form.content.data
-        new_blog=Blog(Blog=blog, category=form.category.data)
+        new_blog=Blog(blog_title=form.title.data,blog_post=form.content.data)
         new_blog.save_blog()
-        return redirect(url_for('main.view_blog'))
-    return render_template('blog.html',form=form)    
+        return render_template('blog.html',form=form,blogs=blogs)
+    return render_template('blog.html',form=form,blogs=blogs)   
 
 @main.route('/blog/comment/new/<int:id>', methods = ['GET','POST'])
 @login_required
