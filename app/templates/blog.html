@@ -9,6 +9,14 @@
     <div>
         {{wtf.quick_form(form)}}
         {{simplemde.load}}
+        {% for blog in blog %}
+
+        <ul>
+            <p>{{blog.username}}</p>
+            <p>{{blog.content}}</p>
+            <p>{{blog.date}}</p>
+        </ul>
+        {% endfor %}
    </div>
   </div>
   <div class= "col-md-3"> </div>
