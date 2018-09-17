@@ -9,10 +9,10 @@
     <div>
         {{wtf.quick_form(form)}}
         {{simplemde.load}}
-        {% for blog in blog %}
 
+        {% for blog in blog %}
         <ul>
-            <p>{{blog.username}}</p>
+            <p>{{blog.title}}</p>
             <p>{{blog.content}}</p>
             <p>{{blog.date}}</p>
         </ul>

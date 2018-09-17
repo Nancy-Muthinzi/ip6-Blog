@@ -17,6 +17,6 @@ class UpdateProfile(FlaskForm):
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
- title = StringField('Comment title',validators=[Required()])
- review = TextAreaField('Blog comment')
- submit = SubmitField('Submit')    
+    title = StringField('Comment title',validators=[Required()])
+    comment = TextAreaField('Blog comment')
+    submit = SubmitField('Submit')    

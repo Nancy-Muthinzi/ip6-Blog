@@ -6,6 +6,18 @@ from flask_login import login_required, current_user
 from .. import db,photos
 import markdown2  
 
+# #Ajax
+# @main.route('/signUp')
+# def signUp():
+#     return render_template('signUp.html')
+
+
+# @main.route('/signUpUser', methods=['POST'])
+# def signUpUser():
+#     user =  request.form['username'];
+#     password = request.form['password'];
+#     return json.dumps({'status':'OK','user':user,'pass':password});
+
 # Views
 @main.route('/')
 def index():
@@ -17,7 +29,7 @@ def index():
 
     return render_template('index.html', title = title)
 
-@main.route('/blog/new', methods=['GET','POST'])
+@main.route('/blog', methods=['GET','POST'])
 @login_required
 def new_blog():
     form = BlogForm
@@ -82,7 +94,7 @@ def update_profile(uname):
     return render_template('profile/update.html',form =form)    
 
 
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@main.route('/user/<uname>/update/pic',methods= ['GET', 'POST'])
 @login_required
 def update_pic(uname):
     user = User.query.filter_by(username = uname).first()

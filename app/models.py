@@ -12,9 +12,9 @@ class Blog(db.Model):
     __tablename__ = 'blogs'
 
     id = db.Column(db.Integer, primary_key=True)
+    blog_title = db.Column(db.String(255))
     blog_post = db.Column(db.String(255))
     posted = db.Column(db.DateTime,default=datetime.utcnow)
-    category = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def save_blog(self):
@@ -63,7 +63,6 @@ class Role(db.Model):
 
 
 class Comment(db.Model):
-
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer,primary_key = True)
