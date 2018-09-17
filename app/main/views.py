@@ -32,7 +32,7 @@ def index():
 @main.route('/blog', methods=['GET','POST'])
 @login_required
 def new_blog():
-    form = BlogForm
+    form = BlogForm()
     if form.validate_on_submit():
         Blog=form.content.data
         new_blog=Blog(Blog=blog, category=form.category.data)
